@@ -18,6 +18,10 @@ namespace OnlineFoodOrderSystem
             builder.Services.AddDbContext<OnlineFoodOrderingDBContext>(options => options.UseSqlite(
                 builder.Configuration.GetConnectionString("FoodOrderingConnection")
                 ));
+            builder.Services.AddCors(options => options.AddPolicy("all", builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
